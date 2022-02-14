@@ -1,0 +1,35 @@
+﻿@model WebAppDemo.Models.EmpresaModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Datos de la empresa</h1>
+<label>Razón social</label>
+<br />
+<label>@Model.RazonSocial</label>
+<h2>Lista de productos:</h2>
+<ul>
+    @for (var i = 0; i < 10; i++)
+    {
+        <li>Producto @(i+1)</li>
+    }
+</ul>
+<form>
+    <button type="submit">Comprar sin JS</button>
+</form>
+<button onclick="comprar()">Comprar con JS</button>
+
+
+
+                                           
+
+
+
+
+<script>
+    function comprar() {
+        alert("Hola");
+    }
+</script>

@@ -1,0 +1,83 @@
+﻿@model List<WebAppDemo.Models.ServiciosModel>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Cliente";
+}
+@{ var index = -1;}
+
+<form class="Contenedor" method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nombre del Servicio</label>
+        <input type="text" class="form-control" id="nom1" name="nom1" placeholder="Colocar Servicio">
+
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Cantidad de Boletos</label>
+        <input type="number" class="form-control" name="can1" id="can1" placeholder="Colocar Cantidades">
+    </div>
+
+    <button onclick="limpiarForm()" class="btn" type="submit" name="submitbtn" value="limpiar">Limpiar</button>
+    <button onclick="crear()" class="btn" type="submit" name="submitbtn" value="guardar">Guardar</button>
+    <button onclick="eliminar()" class="btn" type="submit" name="submitbtn" id="btnEliminar" value="eliminar" disabled>Elminar</button>
+    <button onclick="actualizar()" class="btn" type="submit" name="submitbtn" id="btnActualizar" value="actualizar" disabled>Actualizar</button>
+    <br /><br />
+
+
+
+
+
+    <select name="transporte" size="3" id="cuadro" onclick="cuadroClick()">
+
+        
+        @foreach (var item in Model)
+        {
+        
+            index++;
+            <option name=@index value="@index" class="valores">@Html.DisplayFor(modelItem => item.Nombre) - @Html.DisplayFor(modelItem => item.Cantidad) </option>
+           
+        }
+    </select>
+
+
+</form>
+
+
+
+<script>
+    
+
+    var muchos = document.getElementsByClassName('valores');
+
+    let i;
+
+
+    let cuadro = document.querySelector("#cuadro");
+
+    function limpiarForm() {
+        document.querySelector("#nom1").value = "";
+        document.querySelector("#can1").value = "";
+    }
+
+
+
+    function cuadroClick() {
+
+        i = cuadro.selectedIndex;
+
+        document.getElementById('btnEliminar').disabled = false;
+        document.getElementById('btnActualizar').disabled = false;
+
+        let cadena = muchos[i].text;
+        let datos = cadena.split('-');
+
+        document.querySelector("#nom1").value = datos[0];
+        document.querySelector("#can1").value = parseInt(datos[1]);
+        
+    }
+
+
+
+
+</script>
